@@ -11,9 +11,9 @@ This project demonstrates a **Protected Route Application** using **React Router
 - 🚫 **Protected Routes** (`/page/:number`)
 - 🚪 **Public Routes** (like `/login`)
 - 💾 **Last Visited Page Redirect After Login**
-- 🎨 **Material UI + TailwindCSS Hybrid UI**
+- 🎨 **Material UI + TailwindCSS**
 - 🧭 **Pagination Buttons with Active/Inactive States**
-- 🎯 **Route Guards using React Router v6**
+- 🎯 **Route Guards using React Router**
 
 ---
 
