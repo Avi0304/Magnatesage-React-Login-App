@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
 import Header from '../components/Header';
 import { Typography, Card, CardContent, Paper, Box } from '@mui/material';
 import { FileText } from 'lucide-react';
 
 
 const PageX = ({ number }) => {
-  console.log("Rendering the page ", number);
+
+  useEffect(() => {
+    document.title = `Page ${number} | Protected App`;
+  }, [number]);
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -30,7 +34,16 @@ const PageX = ({ number }) => {
 
         <div className='grid lg:grid-cols-2 gap-8 mt-5'>
           {/* Left Card */}
-          <Card className="shadow-lg border-0 rounded-2xl overflow-hidden">
+          <Card className="shadow-lg border-0 rounded-2xl overflow-hidden"
+            sx={{
+              transition: 'all 0.3s ease',
+              transform: 'scale(1)',
+              '&:hover': {
+                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.15)',
+                transform: 'scale(1.02)',
+              },
+            }}>
+
             <CardContent >
               <Box className="flex items-center space-x-3 mb-6">
                 <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
@@ -55,11 +68,24 @@ const PageX = ({ number }) => {
 
           {/* Right Card */}
           <div className='space-y-6'>
-            <Card className="shadow-lg border-0 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+            <Card className="shadow-lg border-0 rounded-2xl  text-white"
+              sx={{
+                transition: 'all 0.3s ease',
+                transform: 'scale(1)',
+                '&:hover': {
+                  boxShadow: '0 10px 20px rgba(0, 0, 0, 0.15)',
+                  transform: 'scale(1.02)',
+                },
+              }}>
               <CardContent className="p-6">
-                <Typography variant="h5" className="mb-4" sx={{ fontWeight: 500 }}>
-                  Page Statistics
-                </Typography>
+                <div className='flex space-x-3 items-center mb-6'>
+                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                    <FileText className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <Typography variant="h5" className="mb-4" sx={{ fontWeight: 500 }}>
+                    Page Statistics
+                  </Typography>
+                </div>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="text-blue-600 font-semibold">Current Page</span>

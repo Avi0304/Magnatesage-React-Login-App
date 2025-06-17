@@ -45,8 +45,8 @@ src/
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/yourusername/protected-page-app.git
-cd protected-page-app
+git clone https://github.com/Avi0304/Magnatesage-React-Login-App.git
+cd Magnatesage-React-Login-App
 ```
 
 ### 2. Install Dependencies
@@ -58,10 +58,10 @@ npm install
 ### 3. Start the App
 
 ```bash
-npm start
+npm run dev
 ```
 
-App will be available at: `http://localhost:3000`
+App will be available at: `http://localhost:5173/login`
 
 ---
 
@@ -78,7 +78,7 @@ Use the following credentials to log in:
 
 ## 🛡️ Route Behavior
 
-- `/login` → Public route. Redirects to last page if already logged in.
+- `/login` → Public route. Redirects to last visited page if already logged in.
 - `/page/:number` → Protected route. Requires login.
 - On login success → Redirects to last visited protected page.
 - On logout → Clears session and navigates to `/login`.
@@ -95,14 +95,3 @@ Use the following credentials to log in:
 
 ---
 
-## 📌 Customization Tips
-
-- Update `Login.jsx` to connect to real auth logic.
-- Style with more consistent Tailwind or MUI based on preference.
-- Add backend auth/session logic for production.
-
----
-
-## 📄 License
-
-MIT — free to use and modify.

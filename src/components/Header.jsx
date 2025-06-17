@@ -2,6 +2,7 @@ import { AppBar, Button, Toolbar } from '@mui/material';
 import { House, LogOut } from 'lucide-react';
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -10,13 +11,40 @@ const Header = () => {
     // Handle Logout Functionality
     const logout = () => {
         localStorage.removeItem("isLoggedIn");
-        navigate('/login');
+        toast.success('Logout Successfully', {
+            position: "top-left",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
+
+        setTimeout(() => {
+            navigate('/login');
+        }, 1500);
     };
 
     return (
         <AppBar position='sticky' elevation={0} className='bg-white shadow-sm border-b border-gray-200'>
+            {/* React toast for Logout */}
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Bounce}
+            />
             <Toolbar className='flex flex-wrap justify-between items-center px-4 py-2'>
-
                 {/* App title */}
                 <div className='flex items-center gap-3'>
                     <div className='flex space-x-3 items-center'>

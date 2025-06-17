@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getLastPage } from '../utils';
 import { Paper, TextField, Typography, Button, Divider, InputAdornment, IconButton } from '@mui/material';
 import { User, Lock, EyeOff, Eye } from 'lucide-react';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
 
 const Login = () => {
     const [user, setUser] = useState('');
@@ -11,20 +12,64 @@ const Login = () => {
     const [error, seterror] = useState('');
     const navigate = useNavigate();
 
+    useEffect(() => {
+        document.title = 'Login | Protected App';
+    }, []);
+
     //Handle Login for Test Credentials Only
     const handleLogin = () => {
         seterror('');
         if (user === 'admin' && password === 'password') {
             localStorage.setItem('isLoggedIn', 'true');
-            navigate(getLastPage());
+
+            toast.success('Login Successfully', {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+
+            setTimeout(() => {
+                navigate(getLastPage());
+            }, 1500);
         }
         else {
-            seterror("Invalid Credentials. Please Use the test account: admin / password")
+            seterror("Invalid Credentials. Please Use the test account: admin / password");
+            toast.error('Invalid Credentials', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         }
     };
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100 flex items-center justify-center px-4">
+            {/* React toast for login success */}
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Bounce}
+            />
             <Paper elevation={8} className="w-full max-w-md p-10 rounded-2xl shadow-xl">
                 <div className="text-center mb-8">
                     <div className="mx-auto w-16 h-16 bg-blue-100 text-blue-600 flex items-center justify-center rounded-full mb-4">
